@@ -5,8 +5,8 @@ from models import Book, db
 app = Flask(__name__)
 
 with app.app_context():
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://admin:password@flaskdb.clrnsymfz2e0.us-east-1.rds.amazonaws.com/flaskaws'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flaskaws.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://admin:Password123@book-db.cn067cmyem50.us-east-1.rds.amazonaws.com/book-db'
+    #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flaskaws.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.secret_key = "somethingunique"
     db.init_app(app)
