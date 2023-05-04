@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template, request, redirect, url_for, flash
 
 from models import Book, db
@@ -5,7 +7,9 @@ from models import Book, db
 app = Flask(__name__)
 
 with app.app_context():
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://admin:password@flaskdb.cn067cmyem50.us-east-1.rds.amazonaws.com/bookdb'
+    rds_endpoint = os.environ.get('RDS_ENDPOINT')
+    #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://admin:password@flaskdb.cn067cmyem50.us-east-1.rds.amazonaws.com/bookdb'
+    app.config['SQLALCHEMY_DATABASE_URI'] = rds_endpoint
     #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flaskaws.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.secret_key = "somethingunique"
@@ -18,6 +22,7 @@ with app.app_context():
 @app.route('/')
 def index():
     books = Book.query.all()
+    print(os.environ.get('PYTHONPATH'))
     return render_template('index.html', books=books)
 
 @app.route('/add/', methods =['POST'])
