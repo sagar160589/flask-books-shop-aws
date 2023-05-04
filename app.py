@@ -8,7 +8,6 @@ app = Flask(__name__)
 
 with app.app_context():
     rds_endpoint = os.environ.get('RDS_ENDPOINT')
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://admin:password@flaskdb.cn067cmyem50.us-east-1.rds.amazonaws.com/bookdb'
     app.config['SQLALCHEMY_DATABASE_URI'] = rds_endpoint
     #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flaskaws.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
